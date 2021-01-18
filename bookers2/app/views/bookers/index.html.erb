@@ -13,6 +13,9 @@
     <% @bookers.each do |booker| %>
     <tbody>
       <tr>
+        <td>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        </td>
         <td><%= @booker.title %></td>
         <td><%= @booker.opinion %></td>
       </tr>

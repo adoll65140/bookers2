@@ -1,5 +1,12 @@
-<h1>Book detail</h1>
+<h1>Books</h1>
 <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
   <% @bookers.each do |booker| %>
     <tbody>
       <tr>
@@ -12,3 +19,4 @@
     </tbody>
     <% end %>
 </table>
+<%= paginate @bookers %>
