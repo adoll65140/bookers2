@@ -1,0 +1,21 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<h1 class="headline">Books</h1>
+  <table class="index" >
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+      </tr>
+    </thead>
+    <% @bookers.each do |booker| %>
+    <tbody>
+      <tr>
+        <td><%= @booker.title %></td>
+        <td><%= @booker.opinion %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>

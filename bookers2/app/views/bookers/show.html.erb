@@ -1,0 +1,11 @@
+<h1>Book detail</h1>
+<table>
+  <% @bookers.each do |booker| %>
+    <tbody>
+      <tr>
+        <td><%= @booker.title %></td>
+        <td><%= @booker.opinion %></td>
+      </tr>
+    </tbody>
+    <% end %>
+</table>
