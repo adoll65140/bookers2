@@ -1,21 +1,32 @@
-<h1>Users</h1>
-<table>
-  <thead>
-    <tr>
-        <th>image</th>
-        <th>name</th>
-        <th></th>
-      </tr>
-  </thead>
-  <% @users.each do |user| %>
-   <tbody>
-      <tr>
-        <td>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        </td>
-        <td><%= user.name %></td>
-        <td><%= link_to "Show", user_path(user) %></td>
-      </tr>
-    </tbody>
-    <% end %>
-</table>
+<P class="notice"><%= flash[:notice] %></P>
+<div class="container px-5 px-sm-0">
+  
+  <%= render 'layouts/error', model: @booker %>
+  
+  <div class="row">
+    <%= render 'layouts/side', user: current_user, booker: @booker %>
+    <div class="col-md-8 offset-md-1">
+      <h1>Users</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th ></th>
+          </tr>
+        </thead>
+        <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+            </td>
+            <td><%= user.name %></td>
+            <td><%= link_to "Show", user_path(user) %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

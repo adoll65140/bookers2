@@ -1,14 +1,24 @@
-<h1>Editing Book</h1>
-<%= form_with model:@book, local: true do |f| %>
-<%= render 'layouts/error', model: f.object %>
-  <p>Title</p>
-  <%= f.text_field :title %>
-  <p>Opinion</p>
-  <%= f.text_area :opinion %>
-  <div class ="edit">
-    <%= f.submit 'Update Book' %>
+<P class="notice"><%= flash[:notice] %></P>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model:@booker, local: true do |f| %>
+      <%= render 'layouts/error', model: @booker %>
+      <div class="form-group">
+        <label for="book_title">Title</label>
+        <%= f.text_field :title, autofocus:true, class: 'form-control title' %>
+      </div>
+      <div class="form-group">
+        <label for="book-opinion">Opinion</label>
+        <%= f.text_area :body, autofocus:true, class: 'form-control opinion' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Update Book',class: 'btn btn-secondary' %>
+      <div>
+        <%= link_to "Show", booker_path(@booker) %> | <%= link_to "Back", bookers_path %>
+      </div>
+     <% end %>
+   </div>
   </div>
-  <div class="edit">
-    <%= link_to "Show", booker_path(@booker), class: "link" %> | <%= link_to "Back", bookers_path, class: "link" %>
-  </div>
-<% end %>
+</div>

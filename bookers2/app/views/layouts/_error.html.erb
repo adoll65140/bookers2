@@ -1,11 +1,12 @@
-<% if @booker.errors.any? %>
-  <div class="alert alert-warning">
-    <ul>
-      <li class="error-message"><%= @booker.errors.count %>
-<%= "error" %></li>
-      <% @booker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+<% if model.errors.any? %>
+<div class="alert">
+  <h2>
+    <%= pluralize(model.errors.count, "error") %> prohibited this obj from being saved:
+  </h2>
+  <ul>
+    <% model.errors.full_messages.each do |message| %>
+    <li><%= message %></li>s
+    <% end %>
+  </ul>
+</div>
 <% end %>

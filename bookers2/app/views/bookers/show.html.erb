@@ -1,14 +1,37 @@
-<h1>Book detail</h1>
-<table>
-  <% @bookers.each do |booker| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        </td>
-        <td><%= @booker.title %></td>
-        <td><%= @booker.opinion %></td>
-      </tr>
-    </tbody>
-    <% end %>
-</table>
+<P class="notice"><%= flash[:notice] %></P>
+<div class="container px-5 px-sm-0">
+  
+  <%= render 'layouts/error', model: @booker %>
+  
+  <div class="row">
+    <%= render 'layouts/side', user: current_user, booker: @booker %>
+    <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+      <table class="table table-hover table-inverse">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path do %>
+              <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %><br>
+              <%= @user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to booker_path  do %>
+              <%= @booker.title %>
+              <% end %>
+            </td>
+            <td><%= @booker.opinion %></td>
+            <% if user_signed_in? && @booker.user_id == current_user.id %>
+            <td>
+              <%= link_to "Edit", edit_booker_path(@booker.id), class: 'btn btn-sm btn-success edit_book_id' %>
+            </td>
+            <td>
+              <%= link_to "Destroy", booker_path(@booker.id), method: :delete, "data-confirm" => "本当に消しますか？",class: 'btn btn-sm btn-danger destroy_book_id' %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+      </table>
+    </div>
+  </div>

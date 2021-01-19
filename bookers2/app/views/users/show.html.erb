@@ -1,22 +1,39 @@
-<h1>Books</h1>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <% @bookers.each do |booker| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-        </td>
-        <td><%= @booker.title %></td>
-        <td><%= @booker.opinion %></td>
-      </tr>
-    </tbody>
-    <% end %>
-</table>
+<P class="notice"><%= flash[:notice] %></P>
+<div class="container px-5 px-sm-0">
+  
+  <%= render 'layouts/error', model: @booker %>
+  
+  <div class="row">
+    <%= render 'layouts/side', user: @user, booker: @booker %>
+    <div class="col-md-8 offset-md-1">
+      <h1>Books</h1>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <% @bookers.each do |booker| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+              <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to booker_path(booker.id) do %>
+              <%= booker.title %>
+              <% end %>
+            </td>
+            <td><%= booker.opinion %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
 <%= paginate @bookers %>
